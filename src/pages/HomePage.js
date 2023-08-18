@@ -1,7 +1,7 @@
 import TodoContainer from '../components/TodoContainer';
 import TodoForm from '../components/TodoForm';
 
-function Home() {
+function HomePage() {
 	return (
 		<div className='container mt-5 mb-3' style={{ maxWidth: 576 }}>
 			<div className='my-4'>
@@ -12,4 +12,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default HomePage;
