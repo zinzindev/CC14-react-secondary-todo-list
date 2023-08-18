@@ -5,10 +5,10 @@ function TodoContent() {
         Watch movie
       </span>
       <div className="btn-group">
-        <button className="btn btn-outline-secondary">
+        <button className="btn btn-outline-secondary" aria-label="btn">
           <i className="fa-solid fa-toggle-off" />
         </button>
-        <button className="btn btn-outline-secondary">
+        <button className="btn btn-outline-secondary" aria-label="btn">
           <i className="fa-regular fa-trash-can" />
         </button>
       </div>
