@@ -1,11 +1,11 @@
 import TodoContent from './TodoContent';
 
-function TodoItem() {
-  return (
-    <li className="list-group-item p-3 callout-warning">
-      <TodoContent />
-    </li>
-  );
+function TodoItem({ todo }) {
+	return (
+		<li className={`list-group-item p-3 callout-${todo.completed ? 'seccess' : 'warning'} `}>
+			<TodoContent todo={todo} />
+		</li>
+	);
 }
 
 export default TodoItem;
