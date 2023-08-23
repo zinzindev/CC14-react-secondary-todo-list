@@ -1,3 +1,5 @@
+// Backend = CC14-auth-todo-list-lab1-securitty -> on github
+
 import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -16,7 +18,7 @@ root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<AuthContextProvider>
-				<App />
+				<App /> 
 			</AuthContextProvider>
 		</BrowserRouter>
 	</React.StrictMode>
