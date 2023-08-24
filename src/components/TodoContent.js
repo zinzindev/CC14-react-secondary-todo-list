@@ -1,4 +1,4 @@
-function TodoContent({ todo }) {
+function TodoContent({ todo, deleteTodo }) {
 	return (
 		<div className='d-flex align-items-center'>
 			<span className='flex-fill' role='button'>
@@ -8,7 +8,11 @@ function TodoContent({ todo }) {
 				<button className='btn btn-outline-secondary' aria-label='btn'>
 					<i className={`fa-solid fa-toggle-${todo.completed ? 'on' : 'off'}`} />
 				</button>
-				<button className='btn btn-outline-secondary' aria-label='btn'>
+				<button
+					className='btn btn-outline-secondary'
+					aria-label='btn'
+					onClick={() => deleteTodo(todo.id)}
+				>
 					<i className='fa-regular fa-trash-can' />
 				</button>
 			</div>

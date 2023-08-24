@@ -18,7 +18,7 @@ root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<AuthContextProvider>
-				<App /> 
+				<App />
 			</AuthContextProvider>
 		</BrowserRouter>
 	</React.StrictMode>

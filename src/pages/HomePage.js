@@ -11,7 +11,7 @@ function HomePage() {
 		const fetchTodo = async () => {
 			try {
 				const res = await axios.get('http://localhost:8007/todos', {
-					headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') },
+					headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
 				});
 
 				setTodos(res.data.todos);
@@ -37,12 +37,23 @@ function HomePage() {
 		}
 	};
 
+	const deleteTodo = async (id) => {
+		try {
+			await axios.delete('http://localhost:8007/todos/' + id, {
+				headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+			});
+			setTodos(todos.filter((item) => item.id !== id));
+		} catch (error) {
+			alert('Error delete todo');
+		}
+	};
+
 	return (
 		<div className='container mt-5 mb-3' style={{ maxWidth: 576 }}>
 			<div className='my-4'>
 				<TodoForm onSubmit={createTodo} />
 			</div>
-			<TodoContainer todos={todos} />
+			<TodoContainer todos={todos} deleteTodo={deleteTodo} />
 		</div>
 	);
 }
