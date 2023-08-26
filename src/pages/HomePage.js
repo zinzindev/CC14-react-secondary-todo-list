@@ -1,59 +1,42 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+
 import TodoContainer from '../components/TodoContainer';
 import TodoForm from '../components/TodoForm';
-import { useEffect, useState } from 'react';
+import { getAllTodo } from '../stores/todoSlice';
 
 function HomePage() {
-	const [todos, setTodos] = useState([]);
+	// const todos = useSelector(function (state) {
+	// 	return state.todo.todos;
+	// });
+
+	// const todos = useSelector((state) => state.todo.todos);
+
+	const todos = useSelector(({ todo: { todos } }) => todos);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		// ห้าม useEffect เป็น async (useEffect(aync() => {})เพราะลำดับการทำงานจะหายไป ต้องสร้าง function ซ้อนเข้าไปอีกชั้น
 		const fetchTodo = async () => {
 			try {
 				const res = await axios.get('http://localhost:8007/todos', {
-					headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
+					headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
 				});
-
-				setTodos(res.data.todos);
+				dispatch(getAllTodo(res.data.todos));
 			} catch (error) {
-				alert('Fetch todo error');
+				console.log(error);
+				alert('fetch error');
 			}
 		};
-
 		fetchTodo();
 	}, []);
-
-	const createTodo = async (title) => {
-		try {
-			const res = await axios.post(
-				'http://localhost:8007/todos',
-				{ title },
-				{ headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }
-			);
-
-			setTodos([res.data.todo, ...todos]);
-		} catch (error) {
-			alert('Error create todo');
-		}
-	};
-
-	const deleteTodo = async (id) => {
-		try {
-			await axios.delete('http://localhost:8007/todos/' + id, {
-				headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-			});
-			setTodos(todos.filter((item) => item.id !== id));
-		} catch (error) {
-			alert('Error delete todo');
-		}
-	};
 
 	return (
 		<div className='container mt-5 mb-3' style={{ maxWidth: 576 }}>
 			<div className='my-4'>
-				<TodoForm onSubmit={createTodo} />
+				<TodoForm onSubmit={() => {}} />
 			</div>
-			<TodoContainer todos={todos} deleteTodo={deleteTodo} />
+			<TodoContainer todos={todos} deleteTodo={() => {}} />
 		</div>
 	);
 }

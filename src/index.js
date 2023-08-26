@@ -1,12 +1,14 @@
 // Backend = CC14-auth-todo-list-lab1-securitty -> on github
 
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { store } from './stores';
 import App from './App';
 import AuthContextProvider from './contexts/AuthContext';
 import reportWebVitals from './reportWebVitals';
@@ -18,7 +20,9 @@ root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<AuthContextProvider>
-				<App />
+				<Provider store={store}>
+					<App />
+				</Provider>
 			</AuthContextProvider>
 		</BrowserRouter>
 	</React.StrictMode>
