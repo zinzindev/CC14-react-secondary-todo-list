@@ -8,7 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 
 function App() {
 	// const ctx = useContext(AuthContext);
-    const ctx = useAuth(); //ใช้ coustom hook
+	const ctx = useAuth(); //ใช้ coustom hook
 	return (
 		<>
 			<Header />
@@ -28,4 +28,3 @@ function App() {
 }
 
 export default App;
-   

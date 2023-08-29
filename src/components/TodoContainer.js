@@ -1,10 +1,11 @@
 import { Fragment } from 'react';
+
 import PageLimit from './PageLimit';
+import Pagination from './Pagination';
 import SearchStatus from './SearchStatus';
 import SearchText from './SearchText';
 import Sort from './Sort';
 import TodoList from './TodoList';
-import Pagination from './Pagination';
 
 function  TodoContainer({ todos, deleteTodo }) {
 	return (

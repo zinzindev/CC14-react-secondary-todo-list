@@ -10,7 +10,7 @@ function TodoForm({ onSubmit }) {
 
 	return (
 		<form onSubmit={handleSubmitForm}>
-			<div className='input-group'>
+			<div className='input-group' >
 				<input
 					type='text'
 					className='form-control'

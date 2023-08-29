@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const todoSlice = createSlice({
 	name: 'todo',
-	initialState: { todos: [] },
+	initialState: { todoIniState: [] },
 	reducers: {
 		getAllTodo: (state, action) => {
-			state.todos = action.payload;
+			state.todoIniState = action.payload;
 		},
 		createTodo: (state, action) => {},
 		updateTodo: (state, action) => {},
@@ -13,17 +13,17 @@ const todoSlice = createSlice({
 	},
 });
 
-// reducer fn, name, action creaters
+// return -> reducer fn, name, action creaters
+console.log(todoSlice.reducer);
 
-export default todoSlice.reducer;
-
+export default todoSlice.reducer; // -> todoSliceReducer -> ./store/index.js
 
 export const { getAllTodo, createTodo, updateTodo, deleteTodo } = todoSlice.actions;
 
 // function reducer(state, action) {
 // 	switch (action.type) {
 // 		case 'todo/getAllTodo': {
-//  		 state.todos = action.payload;
+//  		  state.todoIntState = act  ion.payload;
 // 		}
 // 		case 'todo/createTodo': {
 // 		}

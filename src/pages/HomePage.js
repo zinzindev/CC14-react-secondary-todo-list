@@ -4,17 +4,25 @@ import axios from 'axios';
 
 import TodoContainer from '../components/TodoContainer';
 import TodoForm from '../components/TodoForm';
-import { getAllTodo } from '../stores/todoSlice';
+import { createTodo, getAllTodo } from '../stores/todoSlice';
 
 function HomePage() {
 	// const todos = useSelector(function (state) {
-	// 	return state.todo.todos;
+	// 	return state.todoStore.todoIniState;
 	// });
 
-	// const todos = useSelector((state) => state.todo.todos);
+	// console.log(useSelector);
 
-	const todos = useSelector(({ todo: { todos } }) => todos);
+	// const todos = useSelector((state) => {
+	// 	console.log(state);
+
+	// 	return state.todoStore.todoIniState;
+	// });
+
+	const todos = useSelector(({ todoStore: { todoIniState } }) => todoIniState);
+
 	const dispatch = useDispatch();
+	// console.log(dispatch);
 
 	useEffect(() => {
 		const fetchTodo = async () => {
@@ -22,12 +30,14 @@ function HomePage() {
 				const res = await axios.get('http://localhost:8007/todos', {
 					headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
 				});
+
 				dispatch(getAllTodo(res.data.todos));
 			} catch (error) {
 				console.log(error);
 				alert('fetch error');
 			}
 		};
+
 		fetchTodo();
 	}, []);
 
