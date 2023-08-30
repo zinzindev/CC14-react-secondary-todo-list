@@ -16,10 +16,7 @@ function RegisterForm() {
 		try {
 			e.preventDefault();
 
-			const res = await axios.post(
-				'http://localhost:8007/auth/register',
-				input
-			);
+			await axios.post('http://localhost:8007/auth/register', input);
 			alert('register success. please login to continue.');
 			navigate('/login');
 		} catch (error) {
@@ -40,9 +37,7 @@ function RegisterForm() {
 						type='text'
 						className='form-control'
 						value={input.username}
-						onChange={(e) =>
-							setInput({ ...input, username: e.target.value })
-						}
+						onChange={(e) => setInput({ ...input, username: e.target.value })}
 					/>
 				</div>
 				<div className='mb-3'>
@@ -51,9 +46,7 @@ function RegisterForm() {
 						type='email'
 						className='form-control'
 						value={input.email}
-						onChange={(e) =>
-							setInput({ ...input, email: e.target.value })
-						}
+						onChange={(e) => setInput({ ...input, email: e.target.value })}
 					/>
 				</div>
 				<div className='mb-3'>
@@ -62,9 +55,7 @@ function RegisterForm() {
 						type='text'
 						className='form-control'
 						value={input.password}
-						onChange={(e) =>
-							setInput({ ...input, password: e.target.value })
-						}
+						onChange={(e) => setInput({ ...input, password: e.target.value })}
 					/>
 				</div>
 				<div className='mb-3'>

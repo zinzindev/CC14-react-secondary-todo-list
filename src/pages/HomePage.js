@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 
 import TodoContainer from '../components/TodoContainer';
 import TodoForm from '../components/TodoForm';
-import { createTodo, getAllTodo } from '../stores/todoSlice';
+import { addTodo, fetchTodo } from '../stores/todoSlice';
 
 function HomePage() {
 	// const todos = useSelector(function (state) {
@@ -25,26 +24,13 @@ function HomePage() {
 	// console.log(dispatch);
 
 	useEffect(() => {
-		const fetchTodo = async () => {
-			try {
-				const res = await axios.get('http://localhost:8007/todos', {
-					headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-				});
-
-				dispatch(getAllTodo(res.data.todos));
-			} catch (error) {
-				console.log(error);
-				alert('fetch error');
-			}
-		};
-
-		fetchTodo();
-	}, []);
+		dispatch(fetchTodo());
+	}, [dispatch]);
 
 	return (
 		<div className='container mt-5 mb-3' style={{ maxWidth: 576 }}>
 			<div className='my-4'>
-				<TodoForm onSubmit={() => {}} />
+				<TodoForm onSubmit={(title) => dispatch(addTodo(title))} />
 			</div>
 			<TodoContainer todos={todos} deleteTodo={() => {}} />
 		</div>
